@@ -7,8 +7,10 @@ import (
 
 func run() bool {
 	runnerLog("Running...")
-
-	cmd := exec.Command(buildPath())
+	command, args := execCmd()
+	runnerLog("Command: %s", command)
+	runnerLog("Args: %s", args)
+	cmd := exec.Command(command, args...)
 
 	stderr, err := cmd.StderrPipe()
 	if err != nil {

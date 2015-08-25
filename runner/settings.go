@@ -29,6 +29,7 @@ var settings = map[string]string{
 	"log_color_runner":  "green",
 	"log_color_watcher": "magenta",
 	"log_color_app":     "",
+	"exec_cmd":          "runner-build",
 }
 
 var colors = map[string]string{
@@ -115,6 +116,11 @@ func tmpPath() string {
 func buildName() string {
 	return settings["build_name"]
 }
+func execCmd() (string, []string) {
+	args := strings.Split(settings["exec_cmd"], " ")
+	return filepath.Join(tmpPath(), args[0]), args[1:]
+}
+
 func buildPath() string {
 	return filepath.Join(tmpPath(), buildName())
 }
