@@ -43,6 +43,10 @@ func watch() {
 				return filepath.SkipDir
 			}
 
+			if len(path) > 1 && strings.HasSuffix(filepath.Base(path), "vendor") {
+				return filepath.SkipDir
+			}
+
 			watchFolder(path)
 		}
 
